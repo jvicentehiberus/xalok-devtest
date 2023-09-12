@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.Uuid) }}
+        {{ form_widget(form.Uuid, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.Brand) }}
+        {{ form_widget(form.Brand, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.Model) }}
+        {{ form_widget(form.Model, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.Plate) }}
+        {{ form_widget(form.Plate, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.LicenseRequired) }}
+        {{ form_widget(form.LicenseRequired, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group mt-4">
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    </div>
+
+{{ form_end(form) }}

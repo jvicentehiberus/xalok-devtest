@@ -1,0 +1,26 @@
+FROM php:8.1-fpm-bookworm
+
+# Install PHP
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libssl-dev zlib1g-dev libpq-dev libzip-dev libxml2-dev ssh-client supervisor unzip curl git nodejs npm && \
+    pecl install apcu xdebug && \
+    npm install -g yarn && \
+    docker-php-ext-install pdo_mysql pdo_pgsql pdo zip intl && \
+    docker-php-ext-enable apcu sodium
+
+# Xdebug config
+RUN docker-php-ext-enable xdebug && \
+    echo "xdebug.mode=develop,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+    echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+    echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+    echo "xdebug.client_port=9000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install symfony
+RUN curl -sS https://get.symfony.com/cli/installer | bash \
+    && mv ~/.symfony5/bin/symfony /usr/local/bin/symfony
+
+WORKDIR /var/www/html

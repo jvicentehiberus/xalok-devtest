@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Driver{% endblock %}
+
+{% block body %}
+	<div class="container mt-2">
+			<a href="{{ path('app_driver_index') }}" class="btn btn-primary btn-back btn-sm mt-2 ml-3">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M11.354 3.646a.5.5 0 0 1 0 .708L7.707 8l3.647 3.646a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0z"/>
+				</svg>
+				Back to list
+			</a>
+		</div>
+		<div class="container mt-5 mb-3">
+		<div class="row">
+			<div class="col-sm-8 d-flex">
+				<h1>Create new Driver</h1>
+			</div>
+		</div>
+	{{ include('driver/_form.html.twig') }}
+{% endblock %}
